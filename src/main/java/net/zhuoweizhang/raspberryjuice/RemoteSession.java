@@ -182,6 +182,17 @@ public class RemoteSession {
 				server.broadcastMessage(chatMessage);
 				
 			// events.clear
+			} else if (c.equals("chat.command")) {
+				//create chat message from args as it was split by ,
+				String chatMessage = "";
+				int count;
+				for(count=0;count<args.length;count++){
+					chatMessage = chatMessage + args[count] + ",";
+				}
+				chatMessage = chatMessage.substring(0, chatMessage.length() - 1);
+				server.dispatchCommand(Bukkit.getConsoleSender(), chatMessage);
+				
+			// events.clear
 			} else if (c.equals("events.clear")) {
 				interactEventQueue.clear();
 				
